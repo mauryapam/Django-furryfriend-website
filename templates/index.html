@@ -1,0 +1,268 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furry Friend</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Sans+Pro&display=swap');
+      </style>
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+          }
+          body {
+            color: #272727;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0;
+         
+          }
+          #home{
+            width: 100%;
+            height: 90vh;
+            margin-top: 50px;
+            background: linear-gradient(0deg, rgb(14 14 14 / 30%), rgb(197 107 160 / 11%)),url(https://gpsztwtsi4-flywheel.netdna-ssl.com/wp-content/uploads/2018/04/help-your-pet-adjust-to-a-new-home-article-image-3.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-left: auto;
+            margin-right: auto;       
+        }
+        .main{
+            width: 100%;
+            display:grid;
+            place-items: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 100px 0;
+            text-align: center;
+            color: #fff
+
+        }
+          nav{
+            width: 100%;
+            background-color: #222a44;
+            position: fixed;
+            top: 0;
+            line-height: 50px;
+            font-weight: bold;
+            text-transform: capitalize;
+          }
+          nav ul{
+            float: right;
+            margin-right: 30px;
+          }
+          nav ul li{
+            list-style-type: none;
+            display: inline-block;
+            transition: 0.7s all;
+          }
+          nav ul li:hover{
+            background-color:rgb(219, 105, 97);
+          }
+          nav ul li a{
+            text-decoration: none;
+            color: #fff;
+            padding: 30px;
+          }
+        .page_container{
+            margin: 20px;
+        }
+        .pet_image img{
+            height: auto;
+            max-width: 100%;
+            vertical-align: middle;  
+        }
+       
+        .pet_container {
+            display: flex;
+            flex-wrap: wrap;
+            list-style:none;
+            margin:0;
+            padding:0;
+            
+          }
+        .pet_items{
+            display: flex;
+            padding: 1rem;
+        }
+        .pet_card{
+            
+            border-radius: 0.25rem;
+            box-shadow: 0 20px 40px -14px rgb(0 0 0 / 25%);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: white;
+            color: #222a44;
+        }
+        
+        .pet_card:hover{
+            box-shadow: 0 4px 10px 0 rgba(22, 22, 24, 0.2);
+            cursor:pointer;
+            border-radius: 0.3rem;
+            
+        }
+
+        @media (min-width:40rem){
+            .pet_items{
+                width:50%;
+            }
+        }
+
+        @media screen and (max-width: 425px) {
+            nav ul li a{
+                padding: 30px 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width:56rem){
+            .pet_items{
+                width:33.33%;
+            }
+        }
+
+        .pet_content{
+            padding: 1rem;
+        }
+        
+        .pet_category , .pet_breed{
+
+                color: #222a44;
+                font-size: 20px;
+                font-weight: 700;
+                text-transform: capitalize;
+                margin: 0px;
+              }
+        
+              .pet_breed:hover{
+                color:#ee5c5c;
+              }
+            
+
+        .pet_desc{
+            padding-top: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            color: #222a44;
+            font-size: 0.975rem;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;    
+            font-weight: 400;
+        }
+
+        .footer {
+            height: auto;
+            grid-area: footer;
+            background-color: #222a44;
+            padding: 10px 40px;
+            color: #fff;
+            text-align: left;
+            font-size: 20px;
+          }
+          .copyright{
+            background-color: #0c1121;
+            color: #fff;
+            text-align:center;
+          }
+        
+          .btn{
+            align-items: center;
+            color: #ffffff;
+            padding: 1rem;
+            margin-top: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-weight: bolder;
+            width: 200px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #222a44;
+            box-shadow: 2px 2px 1px white;
+          }
+          .btn:hover{ 
+              background-color: #ee5c5c;
+            color:#222a44;
+            box-shadow: 2px 2px 1px #222a44;
+
+          }
+        
+    </style>
+</head>
+<body>
+   
+    <!-- Header part -->
+    <section id="home">
+        <nav class="navbar">
+        
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+
+                {% if user.is_authenticated %}
+                <li><a >Hello, {{user.first_name}}</a></li>
+                <li><a href="accounts/logout">Logout</a></li>
+
+                {% else %}
+                <li><a href="accounts/register">Register</a></li>
+                <li><a href="accounts/login">Login</a></li>
+                {% endif %}
+                
+            </ul>
+        
+    </nav>
+        <div class="main">
+            <h1 style="    margin-top: 20px;text-shadow: 2px 2px 2px #333;" class="headings">Find your furry friend!</h1>
+            <button class="btn" >Explore</button>
+        </div>
+    </section>
+
+    <div class="page_container">
+    <section id="explore">
+    <ul class="pet_container">
+        {% for pet in pets %}
+        <!-- pets list -->
+        <li class="pet_items">
+        <div class="pet_card">
+             <div class="pet_image">
+                    <img src="{{pet.img.url}}" alt=""></div>
+                    <div class="pet_content">
+                        <h3 class="pet_category">{{pet.category}}🐾</h3>
+                        <h3 class="pet_breed">Breed : {{pet.breed}}</h3>
+                        <p class="pet_desc">{{pet.desc}}</p>
+                        <p class="pet_owner">☎️ : {{pet.owner}}</p>
+                    </div>
+        </div>
+   </li>
+    {% endfor %}
+    
+   </ul>
+    </section>
+    </div>
+    <!-- Footer -->
+    <section id="contact">
+    <div class="footer">
+      <p><li>About us</li>
+        <li>FAQ</li>
+        <li>Terms & Conditions</li>
+        <li>Privacy Policy</li>
+         <li>Contact Us : +91 12345876543</li></p></div>
+
+         <div class="copyright">© FurryFriend 2021.All Right Reserved</div>
+    </section>
+
+
+</body>
+</html>

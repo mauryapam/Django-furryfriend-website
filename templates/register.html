@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Sans+Pro&display=swap');
+        </style>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            user-select: none;
+        }
+        body{
+            background: #222a44;
+            font-family:'Source Sans Pro', sans-serif;
+
+        }
+        .container{
+            width: 500px;
+            margin: 40px auto;
+            
+
+        }
+
+        .register-form{
+            background: #fff;
+            box-sizing: border-box;
+            border-radius: 10px;
+            padding :40px;
+            clear:both;
+            width: 100%;
+            height:auto;
+        }
+
+        input{
+            width:100%;
+            box-sizing: border-box;
+            padding:20px;
+            margin-bottom:20px;
+            border: 2px solid #e9eaea;
+            color: rgb(17, 1, 1);
+            font-size: 13px;
+            outline:none;
+            transition: all 0.5s ease;
+        }
+        input:focus{
+            border: 2px solid #34b3a0;
+        }
+        .btn{
+            align-items: center;
+            color: #ffffff;
+            padding: 1rem;
+            margin-top: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-weight: bolder;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #222a44;
+            box-shadow: 2px 2px 1px white;
+          }
+          .btn:hover{ 
+            background-color: #ee5c5c;
+            color:#222a44;
+            box-shadow: 2px 2px 1px #222a44;
+
+          }
+     
+        h1{
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 40px 0;
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 2px #ee5c5c;
+        }
+    
+        .user_alerts{
+            
+            color:rgb(245, 68, 91);
+            text-align: center;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    
+
+    <h1>Register</h1>
+    <div class="container">
+        <div class="user_alerts">
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        </div>
+   
+    <div class="register-form">
+        <form action="register" method="post">
+            {% csrf_token %}
+            <div class="textbox"><input type="text" name="first_name" placeholder="FirstName"></div>
+            <div class="textbox"><input type="text" name="last_name" placeholder="LastName"></div>
+            <div class="textbox"><input type="text" name="username" placeholder="UserName"></div>
+            <div class="textbox"><input type="email" name="email" placeholder="Example@xyz.com"></div>
+            <div class="textbox"><input type="password" name="password1" placeholder="Password"></div>
+            <div class="textbox"><input type="password" name="password2" placeholder="Confirm Password"></div>
+            <!-- <div class="check-box"><input type="checkbox"><p>I agree to the terms and conditions</p></div> -->
+            <button type="Submit" class="btn">Register</button>
+        </form></div>
+
+    </div>
+    
+</body>
+</html>

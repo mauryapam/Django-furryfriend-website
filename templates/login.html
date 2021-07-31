@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Sans+Pro&display=swap');
+        </style>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            user-select: none;
+        }
+        body{
+            background: #222a44;
+            font-family: 'Source Sans Pro', sans-serif;
+
+        }
+        .container{
+            width: 500px;
+            margin: 40px auto;
+            
+        }
+
+        .login-form{
+            align-items: center;
+            background: #fff;
+            box-sizing: border-box;
+            border-radius: 10px;
+            padding :40px;
+            clear:both;
+            width: 100%;
+            height:auto;
+        }
+
+        input{
+            width:100%;
+            box-sizing: border-box;
+            padding:20px;
+            margin-bottom:20px;
+            border: 2px solid #e9eaea;
+            color: rgb(17, 17, 17);
+            font-size: 13px;
+            outline:none;
+            transition: all 0.5s ease;
+        }
+        input:focus{
+            border: 2px solid #34b3a0;
+        }
+        .btn{
+            align-items: center;
+            color: #ffffff;
+            padding: 1rem;
+            margin-top: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-weight: bolder;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #222a44;
+            box-shadow: 2px 2px 1px white;
+          }
+          .btn:hover{ 
+            background-color: #ee5c5c;
+            color:#222a44;
+            box-shadow: 2px 2px 1px #222a44;
+
+          }
+        span a{
+            text-decoration: none;
+            color: rgb(16, 111, 235);
+            text-align: center;
+            
+        }
+        h1{
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 40px 0;
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 2px #ee5c5c;
+        }
+        .user_alerts{
+            
+            color:rgb(245, 68, 91);
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="user_alerts">
+        {% for message in messages %}
+        <p>*{{message}}</p>
+        {% endfor %}
+    </div>
+    <div class="container">
+        
+
+    <div class="login-form"><form action="login" method="post">
+        {% csrf_token %}
+        <div class="textbox"> <input type="text" name="username" placeholder="Username"></div>
+        <div class="textbox"><input type="password" name="password" placeholder="Password"></div>
+        <span><a href="">Forget password?</a></span>
+        <div><input type="Submit" class="btn" value="Log In"></div>
+        
+    </form></div>
+</div>
+</body>
+</html>
